@@ -4,7 +4,7 @@ A MediaWiki extension that enable you to embed html cards from Datagrepper app o
 
 ## What does it provide?
 
-mw-FedoraBadges provides one
+mw-Datagrepper provides one
 [parser function](https://www.mediawiki.org/wiki/Manual:Parser_functions):
 
 ### `{{ #datagreppermessages : username }}`
@@ -20,11 +20,6 @@ add the following line:
 require_once "$IP/extensions/Datagrepper/Datagrepper.php";
 ```
 In order to add CSS download the Mediawiki [Extension: CSS](http://www.mediawiki.org/wiki/Extension:CSS).
-
-## License
-
-MIT License. (c) 2013 Red Hat, Inc.
-Written by Ricky Elrod.
 
 
 
