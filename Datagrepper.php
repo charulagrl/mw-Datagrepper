@@ -17,20 +17,28 @@ function DatagrepperSetupParserFunction( &$parser ) {
 }
 
 function DatagrepperMessagesFunction( $parser, $username = '' ) {
-  
   $parser->disableCache();
-  
-  $opts = array('http' =>
-    array(
-        'method'  => 'GET',
-        'header'  => 'Accept: text/html'
+
+  $opts = array(
+    'http' => array(
+      'method' => 'GET',
+      'header' => 'Accept: text/html'
     )
   );
-  
-  include('simple_html_dom.php');
-  $context  = stream_context_create($opts);
-  $url = ('https://apps.fedoraproject.org/datagrepper/raw?rows_per_page=5&order=desc&chrome=false&user=' . urlencode($username));
-  $result = file_get_html($url, false, $context);   
-  return array ( $result, 'isHTML' => true ); 
-}
 
+  $context  = stream_context_create( $opts );
+
+  $result = file_get_contents(
+    'https://apps.fedoraproject.org/datagrepper/raw?rows_per_page=5&order=desc&chrome=false&user=' .
+    urlencode( $username ),
+    false,
+    $context);
+
+  $stripped = preg_replace( '/^\s*/m', '', $result );
+
+  return array(
+    $stripped,
+    'isHTML' => true,
+    'nowiki' => true
+  );
+}
