@@ -9,7 +9,13 @@ mw-Datagrepper provides one
 
 ### `{{#datagreppermessages: username}}`
 
-This displays last 5 messages found in datagrepper on $username's page.
+This displays last 5 messages found in datagrepper related to $username
+in HTML form.
+
+### `{{#datagreppertable: username}}`
+
+This displays last 5 messages found in datagrepper related to $username
+in table form.
 
 ## How do I enable it?
 
