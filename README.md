@@ -7,9 +7,15 @@ A MediaWiki extension that enable you to embed html cards from Datagrepper app o
 mw-Datagrepper provides one
 [parser function](https://www.mediawiki.org/wiki/Manual:Parser_functions):
 
-### `{{ #datagreppermessages : username }}`
+### `{{#datagreppermessages: username}}`
 
-This displays last 5 messages found in datagrepper on $username's page. 
+This displays last 5 messages found in datagrepper related to $username
+in HTML form.
+
+### `{{#datagreppertable: username}}`
+
+This displays last 5 messages found in datagrepper related to $username
+in table form.
 
 ## How do I enable it?
 
