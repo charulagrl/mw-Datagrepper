@@ -17,7 +17,7 @@ function DatagrepperSetupParserFunction( &$parser ) {
   return true;
 }
 
-function DatagrepperMessagesFunction( $parser, $username = '' ) {
+function DatagrepperMessagesFunction( $parser, $username = '', $msg_count = 5) {
   $parser->disableCache();
 
   $opts = array(
@@ -30,7 +30,7 @@ function DatagrepperMessagesFunction( $parser, $username = '' ) {
   $context  = stream_context_create( $opts );
 
   $result = @file_get_contents(
-    'https://apps.fedoraproject.org/datagrepper/raw?rows_per_page=5&order=desc&chrome=false&user=' .
+    'https://apps.fedoraproject.org/datagrepper/raw?rows_per_page='.urlencode($msg_count).'&order=desc&chrome=false&user=' .
     urlencode( $username ),
     false,
     $context);
@@ -48,7 +48,7 @@ function DatagrepperMessagesFunction( $parser, $username = '' ) {
  * Functions much like DatagrepperMessagesFunction but displays a pretty table
  * instead of raw HTML that contains who-knows-what.
  */
-function DatagrepperTableFunction( $parser, $username ) {
+function DatagrepperTableFunction( $parser, $username, $msg_count = 5 ) {
   $parser->disableCache();
 
   $opts = array(
@@ -61,7 +61,7 @@ function DatagrepperTableFunction( $parser, $username ) {
   $context  = stream_context_create( $opts );
 
   $json= @file_get_contents(
-    'https://apps.fedoraproject.org/datagrepper/raw?rows_per_page=5&order=desc&user=' .
+    'https://apps.fedoraproject.org/datagrepper/raw?rows_per_page='.urlencode($msg_count).'&order=desc&user=' .
     urlencode( $username ) . '&meta=date&meta=subtitle&meta=title',
     false,
     $context);
